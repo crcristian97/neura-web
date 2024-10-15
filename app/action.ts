@@ -26,7 +26,7 @@ export async function handleForm(formData: FormData) {
         await sendEmail(
             email,
             `${firstname} at ${company}`,
-            `${proyectCompany}. My budget is ${budget}`
+            `${proyectCompany}. My budget is ${budget}. My email is ${email}`
         );
         return { success: true, message: "Form submitted successfully", data: formDataObject };
     } catch (error) {

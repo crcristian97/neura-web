@@ -1,10 +1,17 @@
+'use client'
 import React from "react";
+import { useFormState } from "react-dom";
 import { Label } from "@/app/components/ui/label";
 import { Input } from "@/app/components/ui/input";
 import { cn } from "@/app/lib/utils";
 import { handleForm } from "@/app/action";
 
-export async function SignupForm() {
+const formAction = async (prevState: any, formData: FormData) => {
+  return handleForm(formData);
+};
+
+export function SignupForm() {
+  const [state, dispatch] = useFormState(formAction, null);
   return (
     <div className="w-1/2  mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black">
     <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
@@ -21,7 +28,7 @@ export async function SignupForm() {
       </span>
     </p>
 
-    <form className="my-8" action={handleForm} method="POST">
+    <form className="my-8" action={dispatch}>
       <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
         <LabelInputContainer>
           <Label htmlFor="firstname">My name is</Label>
