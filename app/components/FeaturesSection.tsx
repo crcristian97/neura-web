@@ -43,7 +43,7 @@ export function FeaturesSection() {
     {
       title: "24/7 Customer Support",
       description:
-        "We are available a 100% of the time. Atleast our AI Agents are.",
+        "We are available a 100% of the time.",
       icon: <IconHelp />,
     },
     {
@@ -53,8 +53,8 @@ export function FeaturesSection() {
       icon: <IconCurrencyDollar />,
     },
     {
-      title: "And everything else",
-      description: "I just ran out of copy ideas. Accept my sincere apologies",
+      title: "Advanced AI Solutions",
+      description: "Harness the power of Artificial Intelligence to streamline decision-making and automate processes.",
       icon: <IconCloud />,
     },
   ];
