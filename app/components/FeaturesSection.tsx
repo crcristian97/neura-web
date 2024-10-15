@@ -1,7 +1,7 @@
 import { cn } from "../lib/utils";
 import {
   IconAdjustmentsBolt,
-  IconCloud,
+  IconBrain,
   IconCurrencyDollar,
   IconEaseInOut,
   IconHeart,
@@ -55,7 +55,7 @@ export function FeaturesSection() {
     {
       title: "Advanced AI Solutions",
       description: "Harness the power of Artificial Intelligence to streamline decision-making and automate processes.",
-      icon: <IconCloud />,
+      icon: <IconBrain />,
     },
   ];
   return (
