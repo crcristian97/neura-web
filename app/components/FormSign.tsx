@@ -6,12 +6,12 @@ import { Input } from "@/app/components/ui/input";
 import { cn } from "@/app/lib/utils";
 import { handleForm } from "@/app/action";
 
-const formAction = async (prevState: any, formData: FormData) => {
+const formAction = async (prevState: unknown, formData: FormData) => {
   return handleForm(formData);
 };
 
 export function SignupForm() {
-  const [state, dispatch] = useFormState(formAction, null);
+  const [, dispatch] = useFormState(formAction, null);
   return (
     <div className="w-1/2  mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black">
     <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
