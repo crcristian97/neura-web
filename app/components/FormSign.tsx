@@ -1,10 +1,11 @@
 'use client'
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useFormState } from "react-dom";
 import { Label } from "@/app/components/ui/label";
 import { Input } from "@/app/components/ui/input";
 import { cn } from "@/app/lib/utils";
 import { handleForm } from "@/app/action";
+import { Modal } from "@/app/components/ui/modal";
 
 const formAction = async (prevState: unknown, formData: FormData) => {
   return handleForm(formData);
@@ -12,6 +13,24 @@ const formAction = async (prevState: unknown, formData: FormData) => {
 
 export function SignupForm() {
   const [, dispatch] = useFormState(formAction, null);
+  const [showModal, setShowModal] = useState(false);
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    await dispatch(new FormData(event.currentTarget));
+    setShowModal(true);
+  };
+
+  useEffect(() => {
+    if (showModal) {
+      const timer = setTimeout(() => {
+        setShowModal(false);
+      }, 2000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [showModal]);
+
   return (
     <div className="w-full md:w-3/4 lg:w-1/2 mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black">
       <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
@@ -28,7 +47,7 @@ export function SignupForm() {
         </span>
       </p>
 
-      <form className="my-8" action={dispatch}>
+      <form className="my-8" onSubmit={handleSubmit}>
         <div className="flex flex-col space-y-4">
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
             <LabelInputContainer className="w-full sm:w-1/2">
@@ -63,6 +82,13 @@ export function SignupForm() {
           <BottomGradient />
         </button>
       </form>
+
+      <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+        <div className="p-4">
+          <h2 className="text-lg font-semibold mb-2">Thanks!</h2>
+          <p>We will contact you soon.</p>
+        </div>
+      </Modal>
     </div>
   );
 }
